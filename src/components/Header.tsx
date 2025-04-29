@@ -1,16 +1,24 @@
 import React from 'react'
+import { useTheme } from '../contexts/ThemeContext'
+import ThemeSwitcher from './ThemeSwitcher'
 
 const Header: React.FC = () => {
+  const { colors } = useTheme();
+
   return (
     <header style={{ 
-      background: '#222', 
-      color: '#fff', 
+      background: colors.headerFooterBackground, 
+      color: colors.headerFooterText,
       padding: '0.7rem', 
-      textAlign: 'center', 
-      fontSize: '1.5rem',
-      borderBottom: '1px solid #111',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      borderBottom: `1px solid ${colors.border}`,
     }}>
-      Craft Game
+      <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+        Craft Game
+      </div>
+      <ThemeSwitcher />
     </header>
   )
 }

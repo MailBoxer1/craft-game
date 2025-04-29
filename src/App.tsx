@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import ElementsList, { ElementItem } from './components/ElementsList'
 import MainContent from './components/MainContent'
+import { useTheme } from './contexts/ThemeContext'
 
 const ELEMENTS: ElementItem[] = [
   { id: 1, emoji: '🔥', name: 'Огонь' },
@@ -23,6 +24,7 @@ interface DragState {
 }
 
 function App() {
+  const { colors } = useTheme();
   const [drag, setDrag] = useState<DragState>({
     id: null,
     offsetX: 0,
@@ -79,7 +81,8 @@ function App() {
       display: 'flex', 
       flexDirection: 'column',
       overflow: 'hidden',
-      background: '#f0f0f0'
+      background: colors.background,
+      color: colors.textPrimary
     }}>
       <Header />
       <div style={{

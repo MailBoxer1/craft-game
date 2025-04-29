@@ -1,16 +1,19 @@
 import React from 'react'
+import { useTheme } from '../contexts/ThemeContext'
 
 const Footer: React.FC = () => {
+  const { colors } = useTheme();
+  
   return (
     <footer style={{ 
-      background: '#222', 
-      color: '#fff', 
+      background: colors.headerFooterBackground, 
+      color: colors.headerFooterText, 
       padding: '0.5rem', 
       textAlign: 'center', 
       fontSize: '0.9rem',
-      borderTop: '1px solid #111',
+      borderTop: `1px solid ${colors.border}`,
     }}>
-      © 2025 Craft Game
+      © {new Date().getFullYear()} Craft Game
     </footer>
   )
 }

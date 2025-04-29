@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTheme } from '../contexts/ThemeContext'
 
 export interface ElementItem {
   id: number
@@ -13,12 +14,14 @@ interface ElementsListProps {
 }
 
 const ElementsList: React.FC<ElementsListProps> = ({ elements, onElementDrag, currentDragId }) => {
+  const { colors } = useTheme();
+  
   return (
     <aside style={{ 
       width: 180,
       minWidth: 180, 
-      background: '#fff', 
-      borderRight: '1px solid #ddd',
+      background: colors.sidebarBackground, 
+      borderRight: `1px solid ${colors.border}`,
       height: '100%',
       overflowY: 'auto',
     }}>
@@ -35,16 +38,21 @@ const ElementsList: React.FC<ElementsListProps> = ({ elements, onElementDrag, cu
                 alignItems: 'center',
                 gap: 10,
                 padding: '10px',
-                background: '#f0f0f0',
+                background: colors.elementBackground,
                 borderRadius: 8,
                 boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
                 cursor: 'grab',
                 userSelect: 'none',
-                border: '1px solid #e0e0e0',
+                border: `1px solid ${colors.border}`,
               }}
             >
               <span style={{ fontSize: 24 }}>{el.emoji}</span>
-              <span style={{ fontSize: 16 }}>{el.name}</span>
+              <span style={{ 
+                fontSize: 16,
+                color: colors.elementText
+              }}>
+                {el.name}
+              </span>
             </div>
           )
         })}
